@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <script>
+        async function submitForm(event) {
+            event.preventDefault();
+
+            const data = {
+                fiDate: document.getElementById('fiDate').value,
+                wheelsId: document.getElementById('wheelsId').value,
+                customerName: document.getElementById('customerName').value,
+                contactNo: document.getElementById('contactNo').value,
+                resiAddress: document.getElementById('resiAddress').value,
+                resiPinCode: document.getElementById('resiPinCode').value,
+                officeAddress: document.getElementById('officeAddress').value,
+                officePinCode: document.getElementById('officePinCode').value,
+                particulars: document.getElementById('particulars').value,
+                pan: document.getElementById('pan').value,
+            };
+
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxZU8aGL3_LoJgmiNqmcxLfvNW6wdIaDUifY0XuK9c1ED4clQ9E9YbzBS0JfhF3twNh/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    alert('Data submitted successfully!');
+                } else {
+                    alert('Error submitting data.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="submitForm(event)">
+        <label for="fiDate">FI Date:</label>
+        <input type="text" id="fiDate" name="fiDate" required><br>
+
+        <label for="wheelsId">Wheels ID:</label>
+        <input type="text" id="wheelsId" name="wheelsId" required><br>
+
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName" name="customerName" required><br>
+
+        <label for="contactNo">Contact Number:</label>
+        <input type="text" id="contactNo" name="contactNo" required><br>
+
+        <label for="resiAddress">Residential Address:</label>
+        <input type="text" id="resiAddress" name="resiAddress" required><br>
+
+        <label for="resiPinCode">Residential Pin Code:</label>
+        <input type="text" id="resiPinCode" name="resiPinCode" required><br>
+
+        <label for="officeAddress">Office Address:</label>
+        <input type="text" id="officeAddress" name="officeAddress" required><br>
+
+        <label for="officePinCode">Office Pin Code:</label>
+        <input type="text" id="officePinCode" name="officePinCode" required><br>
+
+        <label for="particulars">Particulars:</label>
+        <input type="text" id="particulars" name="particulars" required><br>
+
+        <label for="pan">PAN:</label>
+        <input type="text" id="pan" name="pan" required><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
