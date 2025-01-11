@@ -94,41 +94,40 @@
         });
 
         document.getElementById('fiForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+    e.preventDefault();
 
-            const data = {
-                fiDate: document.getElementById('fiDate').value,
-                wheelsId: document.getElementById('wheelsId').value,
-                customerName: document.getElementById('customerName').value,
-                contactNo: document.getElementById('contactNo').value,
-                resiAddress: document.getElementById('resiAddress').value,
-                resiPinCode: document.getElementById('resiPinCode').value,
-                officeAddress: document.getElementById('officeAddress').value,
-                officePinCode: document.getElementById('officePinCode').value,
-                particulars: document.getElementById('particulars').value,
-                pan: document.getElementById('pan').value
-            };
+    const data = {
+        fiDate: document.getElementById('fiDate').value,
+        wheelsId: document.getElementById('wheelsId').value,
+        customerName: document.getElementById('customerName').value,
+        contactNo: document.getElementById('contactNo').value,
+        resiAddress: document.getElementById('resiAddress').value,
+        resiPinCode: document.getElementById('resiPinCode').value,
+        officeAddress: document.getElementById('officeAddress').value,
+        officePinCode: document.getElementById('officePinCode').value,
+        particulars: document.getElementById('particulars').value,
+        pan: document.getElementById('pan').value
+    };
 
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbxZU8aGL3_LoJgmiNqmcxLfvNW6wdIaDUifY0XuK9c1ED4clQ9E9YbzBS0JfhF3twNh/exec', 
-                   {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                       mode: 'no-cors'
-                });
-
-                if (response.ok) {
-                    alert('Data submitted successfully!');
-                } else {
-                    alert('Failed to submit data.');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxZU8aGL3_LoJgmiNqmcxLfvNW6wdIaDUifY0XuK9c1ED4clQ9E9YbzBS0JfhF3twNh/exec', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors'  // Changed to 'cors'
         });
+
+        if (response.ok) {
+            alert('Data submitted successfully!');
+        } else {
+            alert('Failed to submit data.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
     </script>
 
 </body>
